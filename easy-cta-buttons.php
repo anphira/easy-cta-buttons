@@ -26,15 +26,14 @@ function easy_cta_buttons_admin_notice__success() {
 }
 add_action( 'admin_notices', 'easy_cta_buttons_admin_notice__success' );
 
-// [cc_button link="http://ww…" text="" round="yes" color="blue"]
 /**
- * cc_button shortcode
+ * easy_cta_button shortcode
  * @param link option is URL
  * @param text option is text to be displayed
  * @param round option is yes or no
  * @param color options are light_grey, dark_grey, blue, green, yellow, orange
  */
-function cc_button_shortcode ( $atts ) {
+function easy_cta_button_shortcode ( $atts ) {
     $a = shortcode_atts( array(
         'link' => 'something',
         'text' => 'something else',
