@@ -12,6 +12,12 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: easy_cta_buttons
 */
 
+function easy_cta_buttons_enqueue_style() {
+    wp_register_style( 'easy_cta_buttons', plugins_url('easy-cta-buttons/easy-cta-buttons.min.css') );
+    wp_enqueue_style( 'easy_cta_buttons' );
+}
+add_action( 'wp_enqueue_scripts', 'easy_cta_buttons_enqueue_style' );
+
 function easy_cta_buttons_admin_notice__success() {
     ?>
     <div class="notice notice-success">
