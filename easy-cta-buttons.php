@@ -26,7 +26,8 @@ function easy_cta_buttons_admin_notice__success() {
         text: this field is the text you want to display<br />
         round: include this field when you want the CTA to have rounded edges<br />
         color: this is the color, options available: light_grey, dark_grey, blue, green, yellow, orange, or custom hex value<br />
-        Custom color example: [easy_cta_button link="http://example.com" text="Click here" round="yes" color="#f7f7f7"]', 'easy_cta_buttons' ); ?></p>
+        Custom color example: [easy_cta_button link="http://example.com" text="Click here" round="yes" color="#f7f7f7"]<br />
+        <strong>Since this shortcode contains a link it MUST be entered from the TEXT editor, not visual</strong>', 'easy_cta_buttons' ); ?></p>
     </div>
     <?php
 }
