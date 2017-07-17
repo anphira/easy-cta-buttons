@@ -44,7 +44,7 @@ function easy_cta_button_shortcode ( $atts ) {
     $round_value = ($a['round'] == 'yes') ? 'callout-round' : '';
 
     if(substr($a['color'], 0, 1) == '#') {
-        $color_value = 
+        $color_value = $a['color'];
     }
     else {
         switch ($a['color']) {
