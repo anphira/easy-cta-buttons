@@ -3,7 +3,7 @@
 Plugin Name: Easy CTA Buttons
 Plugin URI: https://www.anphira.com/fruitful-widgets
 Description: Adds useful & stylish call to action buttons.
-Version: 1.0
+Version: 1.1
 GitHub Plugin URI: anphira/easy-cta-buttons
 Author: Anphira
 Author URI: https://www.anphira.com
@@ -21,12 +21,13 @@ add_action( 'wp_enqueue_scripts', 'easy_cta_buttons_enqueue_style' );
 function easy_cta_buttons_admin_notice__success() {
     ?>
     <div class="notice notice-success">
-        <p><?php _e( 'Shortcode for displaying CTAs: [easy_cta_button link="http://example.com" text="Click here" round="yes" color="blue"]<br />
+        <p><?php _e( 'Shortcode for displaying CTAs: [easy_cta_button link="http://example.com" text="Click here" round="yes" color="blue" size="small"]<br />
         link: this field is used for the URL that you want the CTA to go to<br />
         text: this field is the text you want to display<br />
         round: include this field when you want the CTA to have rounded edges<br />
         color: this is the color, options available: light_grey, dark_grey, blue, green, yellow, orange, or custom hex value<br />
-        Custom color example: [easy_cta_button link="http://example.com" text="Click here" round="yes" color="#f7f7f7"]<br />
+        Custom color example: [easy_cta_button link="http://example.com" text="Click here" round="yes" color="#f7f7f7" size="normal"]<br />
+        size: this is how large you want the button, either "small" or "normal", the default is "normal"<br />
         <strong>Since this shortcode contains a link it MUST be entered from the TEXT editor, not visual</strong>', 'easy_cta_buttons' ); ?></p>
     </div>
     <?php
@@ -39,6 +40,7 @@ add_action( 'admin_notices', 'easy_cta_buttons_admin_notice__success' );
  * @param text option is text to be displayed
  * @param round option is yes or no
  * @param color options are light_grey, dark_grey, blue, green, yellow, orange
+ * @param size options are normal and small
  */
 function easy_cta_button_shortcode ( $atts ) {
     $a = shortcode_atts( array(
@@ -46,9 +48,22 @@ function easy_cta_button_shortcode ( $atts ) {
         'text' => 'something else',
         'round' => 'no',
         'color' => 'blue',
+        'size' => 'normal'
     ), $atts );
 
     $round_value = ($a['round'] == 'yes') ? 'callout-round' : '';
+
+    switch($a['size']) {
+        case 'normal':
+            $size_value = ' ';
+            break;
+        case 'small':
+            $size_value = ' callout-small';
+            break;
+        default:
+            $size_value = ' ';
+            break;
+    }
 
     if(substr($a['color'], 0, 1) == '#') {
         $color_value = $a['color'];
@@ -89,6 +104,7 @@ function easy_cta_button_shortcode ( $atts ) {
 
     $return_value = '<a class="callout-button ';
     $return_value .= $round_value;
+    $return_value .= $size_value;
     $return_value .= ' " style="background:';
     $return_value .= $color_value;
     $return_value .= ';color:#';
